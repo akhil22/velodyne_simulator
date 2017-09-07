@@ -2,15 +2,16 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="example">
 
   <!-- Base Footprint -->
-  <link name="base_footprint" />
+  <!--  <link name="vehicle/base_footprint" /> -->
+  <link name="vehicle/base_link" /> 
 
   <!-- Base Link -->
-  <joint name="footprint" type="fixed" >
-   <parent link="base_footprint" />
-    <child link="base_link" />
-    <origin xyz="0 0 0.05" rpy="0 0 0" />
+  <!--  <joint name="footprint" type="fixed" >
+    <parent link="base_footprint" />
+    <child link="vehicle/velodyne_base" />
+    <origin xyz="0 0 1.45" rpy="0 0 0" />
   </joint>
-  <link name="base_link" >
+  <link name="vehicle/velodyne_base" >
     <visual>
       <geometry>
         <box size="0.5 0.5 0.1" />
@@ -28,16 +29,16 @@
                iyy="3.0" iyz="0.0" 
                izz="3.0" />
     </inertial>
-  </link>
+  </link> -->
 
   <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
-  <VLP-16 parent="base_link" name="velodyne" topic="/velodyne_points" hz="10" samples="440">
-    <origin xyz="0 0 0.4" rpy="0 0 0" />
+  <VLP-16 parent="vehicle/base_link" name="velodyne" topic="vehicle/velodyne_points" hz="10" samples="440">
+    <origin xyz="0 0 1.7" rpy="0 0 0" />
   </VLP-16>
 
-  <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
+  <!--  <xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro"/>
   <HDL-32E parent="base_link" name="velodyne2" topic="/velodyne_points2" hz="10" samples="220">
     <origin xyz="0 0 0.6" rpy="0 0 0" />
-  </HDL-32E>
+  </HDL-32E> -->
 
 </robot>
